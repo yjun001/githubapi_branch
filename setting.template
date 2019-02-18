@@ -1,0 +1,6 @@
+{
+    "organization": "your_organization_name",
+    "org_token": "your_personal_access_tokern",
+    "org_owner_id": "your_github_account_id",
+    "api_endpoint": "https://api.github.com"
+}
