@@ -20,7 +20,7 @@ class gBranch:
             with open(file, "rb") as f:
                 return json.load(f)
         except IOError:
-            print "Json file load error"
+            print ("Json file load error")
             return None
     
     def __save_protected_branches(self, js_data):
@@ -47,7 +47,7 @@ class gBranch:
         # Tell the user their URL was bad and try a different one
         except requests.exceptions.RequestException as e:
         # catastrophic error. bail.
-            print e
+            print (e)
             sys.exit(1)
         '''
         except e:
@@ -82,7 +82,7 @@ class gBranch:
         else:
             url = "%s/repos/%s/%s/branches/%s/protection" % ( self.__ss['api_endpoint'],self.__org, repos, branch)
         resp = self.__githubapi_request(url)
-        print json.dumps(resp, sort_keys=True, indent=4)
+        print (json.dumps(resp, sort_keys=True, indent=4))
 
     # get informatoin in a protected branch of repository
     def check_branch_protected(self, repos, branch):
@@ -90,7 +90,7 @@ class gBranch:
         # print "check branch url %s" % url
         resp = self.__githubapi_request(url)
         if resp['protected'] == True:
-            print repos, resp['name']
+            print (repos, resp['name'])
             if repos in self.__protected_branches.iterkeys():
                 # if resp['name'] not in self.__protected_branches[repos]:
                 self.__protected_branches[repos].append(resp['name'])
@@ -112,7 +112,7 @@ class gBranch:
         url = "%s/restrictions/users" % ( url )
         # print "list branches url %s in repository %s" % ( url, repos )
         resp = self.__githubapi_request(url)
-        print json.dumps(resp, sort_keys=True, indent=4)
+        print (json.dumps(resp, sort_keys=True, indent=4))
         #return [ r['name'] for r in resp ]
 
     def get_protected_branches(self):
